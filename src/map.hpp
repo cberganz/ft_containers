@@ -6,7 +6,7 @@
 /*   By: cberganz <cberganz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 10:49:32 by cberganz          #+#    #+#             */
-/*   Updated: 2022/08/01 00:41:14 by cberganz         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:57:14 by cberganz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ namespace ft {
 template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
 class map {
 
-	public:
-	typedef Key														key_type;
-	typedef T														mapped_type;
-	typedef ft::pair<const Key, T>									value_type;
-	typedef Compare													key_compare;
+public:
+	typedef Key							key_type;
+	typedef T							mapped_type;
+	typedef ft::pair<const Key, T>		value_type;
+	typedef Compare						key_compare;
 
-	private:
+private:
 	class value_compare : public std::binary_function<value_type, value_type, bool> {
 
 		friend class map<Key, T, Compare, Allocator>;
@@ -69,7 +69,7 @@ class map {
 
 	typedef ft::RBTree<key_type, KeyOfValue, value_type, value_compare, Allocator>	RBTree;
 
-	public:
+public:
 	typedef typename RBTree::allocator_type				allocator_type;
 	typedef typename RBTree::reference					reference;
 	typedef typename RBTree::const_reference			const_reference;
@@ -82,10 +82,10 @@ class map {
 	typedef typename RBTree::const_reverse_iterator		const_reverse_iterator;
 	typedef typename RBTree::difference_type			difference_type;
 
-	protected:
+protected:
 	RBTree			_RBTree;
 
-	public:
+public:
 	explicit
 	map(const Compare& compare = Compare(), const Allocator& allocator = Allocator())
 		: _RBTree(value_compare(compare), allocator)
@@ -306,54 +306,54 @@ class map {
 	
 };	// class map
 	
-	/******************************
-		  operators overload
-	******************************/
+/******************************
+	  operators overload
+******************************/
 
-	template <class _Key, class _T, class _Compare, class _Allocator>
-	bool
-	operator==(const map<_Key, _T, _Compare, _Allocator>& lhs,
-			   const map<_Key, _T, _Compare, _Allocator>& rhs)
-	{ return lhs._RBTree == rhs._RBTree; }
+template <class _Key, class _T, class _Compare, class _Allocator>
+inline bool
+operator==(const map<_Key, _T, _Compare, _Allocator>& lhs,
+		   const map<_Key, _T, _Compare, _Allocator>& rhs)
+{ return lhs._RBTree == rhs._RBTree; }
 
-	template <class _Key, class _T, class _Compare, class _Allocator>
-	bool
-	operator<(const map<_Key, _T, _Compare, _Allocator>& lhs,
-			  const map<_Key, _T, _Compare, _Allocator>& rhs)
-	{ return lhs._RBTree < rhs._RBTree; }
+template <class _Key, class _T, class _Compare, class _Allocator>
+inline bool
+operator<(const map<_Key, _T, _Compare, _Allocator>& lhs,
+		  const map<_Key, _T, _Compare, _Allocator>& rhs)
+{ return lhs._RBTree < rhs._RBTree; }
 
-	template <class _Key, class _T, class _Compare, class _Allocator>
-	bool
-	operator!=(const map<_Key, _T, _Compare, _Allocator>& lhs,
-			   const map<_Key, _T, _Compare, _Allocator>& rhs)
-	{ return not (lhs == rhs); }
+template <class _Key, class _T, class _Compare, class _Allocator>
+inline bool
+operator!=(const map<_Key, _T, _Compare, _Allocator>& lhs,
+		   const map<_Key, _T, _Compare, _Allocator>& rhs)
+{ return not (lhs == rhs); }
 
-	template <class _Key, class _T, class _Compare, class _Allocator>
-	bool
-	operator>(const map<_Key, _T, _Compare, _Allocator>& lhs,
-			  const map<_Key, _T, _Compare, _Allocator>& rhs)
-	{ return rhs < lhs; }
+template <class _Key, class _T, class _Compare, class _Allocator>
+inline bool
+operator>(const map<_Key, _T, _Compare, _Allocator>& lhs,
+		  const map<_Key, _T, _Compare, _Allocator>& rhs)
+{ return rhs < lhs; }
 
-	template <class _Key, class _T, class _Compare, class _Allocator>
-	bool
-	operator>=(const map<_Key, _T, _Compare, _Allocator>& lhs,
-			   const map<_Key, _T, _Compare, _Allocator>& rhs)
-	{ return not (lhs < rhs); }
+template <class _Key, class _T, class _Compare, class _Allocator>
+inline bool
+operator>=(const map<_Key, _T, _Compare, _Allocator>& lhs,
+		   const map<_Key, _T, _Compare, _Allocator>& rhs)
+{ return not (lhs < rhs); }
 
-	template <class _Key, class _T, class _Compare, class _Allocator>
-	bool
-	operator<=(const map<_Key, _T, _Compare, _Allocator>& lhs,
-			   const map<_Key, _T, _Compare, _Allocator>& rhs)
-	{ return not (rhs < lhs); }
+template <class _Key, class _T, class _Compare, class _Allocator>
+inline bool
+operator<=(const map<_Key, _T, _Compare, _Allocator>& lhs,
+		   const map<_Key, _T, _Compare, _Allocator>& rhs)
+{ return not (rhs < lhs); }
 
-	/******************************
-		specialized algorithm
-	******************************/
+/******************************
+	specialized algorithm
+******************************/
 
-	template <class _Key, class _T, class _Compare, class _Allocator>
-	void
-	swap(map<_Key, _T, _Compare, _Allocator>& x, map<_Key, _T, _Compare, _Allocator>& y)
-	{ x.swap(y); }
+template <class _Key, class _T, class _Compare, class _Allocator>
+void
+swap(map<_Key, _T, _Compare, _Allocator>& x, map<_Key, _T, _Compare, _Allocator>& y)
+{ x.swap(y); }
 
 }	//namespace ft
 

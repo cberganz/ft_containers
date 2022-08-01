@@ -6,7 +6,7 @@
 /*   By: cberganz <cberganz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 10:49:32 by cberganz          #+#    #+#             */
-/*   Updated: 2022/08/01 03:02:07 by cberganz         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:02:25 by cberganz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ namespace ft {
 template <class T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
 class set {
 
-	public:
+public:
 	typedef T														key_type;
 	typedef T														value_type;
 	typedef Compare													key_compare;
 	typedef Compare													value_compare;
 
-	private:
+private:
 	struct KeyOfValue : public std::unary_function<T, T> {
 	
 		friend class set<T, Compare, Allocator>;
@@ -52,7 +52,7 @@ class set {
 
 	typedef ft::RBTree<key_type, KeyOfValue, value_type, value_compare, Allocator>		RBTree;
 	
-	public:
+public:
 	typedef typename RBTree::allocator_type				allocator_type;
 	typedef typename RBTree::reference					reference;
 	typedef typename RBTree::const_reference			const_reference;
@@ -65,10 +65,10 @@ class set {
 	typedef typename RBTree::const_reverse_iterator		const_reverse_iterator;
 	typedef typename RBTree::difference_type			difference_type;
 
-	protected:
+protected:
 	RBTree			_RBTree;
 
-	public:
+public:
 	explicit
 	set(const key_compare& _compare = Compare(), const allocator_type& _allocator = Allocator())
 		: _RBTree(_compare, _allocator)
@@ -275,54 +275,54 @@ class set {
 	
 };	// class set
 	
-	/******************************
-		  operators overload
-	******************************/
+/******************************
+	  operators overload
+******************************/
 
-	template <class _T, class _Compare, class _Allocator>
-	inline bool
-	operator==(const set<_T, _Compare, _Allocator>& lhs,
-			   const set<_T, _Compare, _Allocator>& rhs)
-	{ return lhs._RBTree == rhs._RBTree; }
+template <class _T, class _Compare, class _Allocator>
+inline bool
+operator==(const set<_T, _Compare, _Allocator>& lhs,
+		   const set<_T, _Compare, _Allocator>& rhs)
+{ return lhs._RBTree == rhs._RBTree; }
 
-	template <class _T, class _Compare, class _Allocator>
-	inline bool
-	operator<(const set<_T, _Compare, _Allocator>& lhs,
-			  const set<_T, _Compare, _Allocator>& rhs)
-	{ return lhs._RBTree < rhs._RBTree; }
+template <class _T, class _Compare, class _Allocator>
+inline bool
+operator<(const set<_T, _Compare, _Allocator>& lhs,
+		  const set<_T, _Compare, _Allocator>& rhs)
+{ return lhs._RBTree < rhs._RBTree; }
 
-	template <class _T, class _Compare, class _Allocator>
-	inline bool
-	operator!=(const set<_T, _Compare, _Allocator>& lhs,
-			   const set<_T, _Compare, _Allocator>& rhs)
-	{ return not (lhs == rhs); }
+template <class _T, class _Compare, class _Allocator>
+inline bool
+operator!=(const set<_T, _Compare, _Allocator>& lhs,
+		   const set<_T, _Compare, _Allocator>& rhs)
+{ return not (lhs == rhs); }
 
-	template <class _T, class _Compare, class _Allocator>
-	inline bool
-	operator>(const set<_T, _Compare, _Allocator>& lhs,
-			  const set<_T, _Compare, _Allocator>& rhs)
-	{ return rhs < lhs; }
+template <class _T, class _Compare, class _Allocator>
+inline bool
+operator>(const set<_T, _Compare, _Allocator>& lhs,
+		  const set<_T, _Compare, _Allocator>& rhs)
+{ return rhs < lhs; }
 
-	template <class _T, class _Compare, class _Allocator>
-	inline bool
-	operator>=(const set<_T, _Compare, _Allocator>& lhs,
-			   const set<_T, _Compare, _Allocator>& rhs)
-	{ return not (lhs < rhs); }
+template <class _T, class _Compare, class _Allocator>
+inline bool
+operator>=(const set<_T, _Compare, _Allocator>& lhs,
+		   const set<_T, _Compare, _Allocator>& rhs)
+{ return not (lhs < rhs); }
 
-	template <class _T, class _Compare, class _Allocator>
-	inline bool
-	operator<=(const set<_T, _Compare, _Allocator>& lhs,
-			   const set<_T, _Compare, _Allocator>& rhs)
-	{ return not (rhs < lhs); }
+template <class _T, class _Compare, class _Allocator>
+inline bool
+operator<=(const set<_T, _Compare, _Allocator>& lhs,
+		   const set<_T, _Compare, _Allocator>& rhs)
+{ return not (rhs < lhs); }
 
-	/******************************
-		specialized algorithm
-	******************************/
+/******************************
+	specialized algorithm
+******************************/
 
-	template <class _T, class _Compare, class _Allocator>
-	void
-	swap(set<_T, _Compare, _Allocator>& x, set<_T, _Compare, _Allocator>& y)
-	{ x.swap(y); }
+template <class _T, class _Compare, class _Allocator>
+void
+swap(set<_T, _Compare, _Allocator>& x, set<_T, _Compare, _Allocator>& y)
+{ x.swap(y); }
 
 }	//namespace ft
 

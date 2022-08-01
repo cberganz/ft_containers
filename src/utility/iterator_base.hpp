@@ -6,7 +6,7 @@
 /*   By: cberganz <cberganz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:20 by cberganz          #+#    #+#             */
-/*   Updated: 2022/07/31 08:34:43 by cberganz         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:15:00 by cberganz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,6 @@ struct valid_iterator_tag_res
 	typedef T type;
 	const static bool value = is_valid;
 };
-
-//template <typename T>
-//struct is_input_iterator_tagged : public valid_iterator_tag_res<false, T>
-//{};
-//
-//template <>
-//struct is_input_iterator_tagged<std::random_access_iterator_tag>
-//	: public valid_iterator_tag_res<true, std::random_access_iterator_tag>
-//{};
-//
-//template <>
-//struct is_input_iterator_tagged<std::bidirectional_iterator_tag>
-//	: public valid_iterator_tag_res<true, std::bidirectional_iterator_tag>
-//{};
-//
-//template <typename T>
-//struct is_ft_iterator_tagged : public valid_iterator_tag_res<false, T>
-//{};
-//
-//template <>
-//struct is_ft_iterator_tagged<std::random_access_iterator_tag>
-//	: public valid_iterator_tag_res<true, std::random_access_iterator_tag>
-//{};
-//
-//template <>
-//struct is_ft_iterator_tagged<std::bidirectional_iterator_tag>
-//	: public valid_iterator_tag_res<true, std::bidirectional_iterator_tag>
-//{};
 
 template <typename Category, typename T, typename Difference = std::ptrdiff_t, typename Pointer = T*, typename Reference = T&>
 struct iterator {

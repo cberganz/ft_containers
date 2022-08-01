@@ -6,7 +6,7 @@
 /*   By: cberganz <cberganz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 22:50:54 by cberganz          #+#    #+#             */
-/*   Updated: 2022/07/31 15:57:11 by cberganz         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:58:53 by cberganz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,123 +22,121 @@ template <class T, class Container = ft::vector<T> >
 class stack {
 
 public:
-
 	typedef typename Container::value_type	value_type;
 	typedef typename Container::size_type	size_type;
 	typedef Container						container_type;
 
 protected:
+	container_type container;
 
-	container_type _M_container;
-
-public:
-	
+public:	
 	explicit
 	stack(const Container & container = Container())
-		: _M_container(container)
+		: container(container)
 	{}
 
 	bool
 	empty()
 	const
-	{ return _M_container.empty(); }
+	{ return container.empty(); }
 
 	size_type
 	size()
 	const
-	{ return _M_container.size(); }
+	{ return container.size(); }
 
 	value_type &
 	top()
-	{ return _M_container.back(); }
+	{ return container.back(); }
 
 	const
 	value_type &
 	top()
 	const
-	{ return _M_container.back(); }
+	{ return container.back(); }
 
 	void
 	push(const value_type &x)
-	{ _M_container.push_back(x); }
+	{ container.push_back(x); }
 
 	void
 	pop()
-	{ _M_container.pop_back(); }
+	{ container.pop_back(); }
 
-	template <class _T, class __Container>
+	template <class _T, class _Container>
 	friend
 	bool
-	operator==(const stack<_T, __Container> &x,
-			   const stack<_T, __Container> &y);
+	operator==(const stack<_T, _Container> &lhs,
+			   const stack<_T, _Container> &rhs);
 
-	template <class _T, class __Container>
+	template <class _T, class _Container>
 	friend
 	bool
-	operator<(const stack<_T, __Container> &x,
-			  const stack<_T, __Container> &y);
+	operator<(const stack<_T, _Container> &lhs,
+			  const stack<_T, _Container> &rhs);
 
-	template <class _T, class __Container>
+	template <class _T, class _Container>
 	friend
 	bool
-	operator!=(const stack<_T, __Container> &x,
-			   const stack<_T, __Container> &y);
+	operator!=(const stack<_T, _Container> &lhs,
+			   const stack<_T, _Container> &rhs);
 
-	template <class _T, class __Container>
+	template <class _T, class _Container>
 	friend
 	bool
-	operator>(const stack<_T, __Container> &x,
-			  const stack<_T, __Container> &y);
+	operator>(const stack<_T, _Container> &lhs,
+			  const stack<_T, _Container> &rhs);
 
-	template <class _T, class __Container>
+	template <class _T, class _Container>
 	friend
 	bool
-	operator>=(const stack<_T, __Container> &x,
-			   const stack<_T, __Container> &y);
+	operator>=(const stack<_T, _Container> &lhs,
+			   const stack<_T, _Container> &rhs);
 
-	template <class _T, class __Container>
+	template <class _T, class _Container>
 	friend
 	bool
-	operator<=(const stack<_T, __Container> &x,
-			   const stack<_T, __Container> &y);
+	operator<=(const stack<_T, _Container> &lhs,
+			   const stack<_T, _Container> &rhs);
 
-}; // class stack
+};	// class stack
 
 template <class _T, class _Container>
-bool
+inline bool
 operator==(const ft::stack<_T, _Container>& lhs,
 		   const ft::stack<_T, _Container>& rhs)
-{ return lhs._M_container == rhs._M_container; }
+{ return lhs.container == rhs.container; }
 
 template <class _T, class _Container>
-bool operator!=(const ft::stack<_T, _Container>& lhs,
-				const ft::stack<_T, _Container>& rhs)
-{ return lhs._M_container != rhs._M_container; }
+inline bool
+operator!=(const ft::stack<_T, _Container>& lhs,
+		   const ft::stack<_T, _Container>& rhs)
+{ return lhs.container != rhs.container; }
 
 template <class _T, class _Container>
-bool
+inline bool
 operator<(const ft::stack<_T, _Container>& lhs,
 		  const ft::stack<_T, _Container>& rhs)
-{ return lhs._M_container < rhs._M_container; }
+{ return lhs.container < rhs.container; }
 
 template <class _T, class _Container>
-bool
+inline bool
 operator<=(const ft::stack<_T, _Container>& lhs,
 		   const ft::stack<_T, _Container>& rhs)
-{ return lhs._M_container <= rhs._M_container; }	
+{ return lhs.container <= rhs.container; }	
 	
 template <class _T, class _Container>
-bool
+inline bool
 operator>(const ft::stack<_T, _Container>& lhs,
 		  const ft::stack<_T, _Container>& rhs)
-{ return lhs._M_container > rhs._M_container; }
+{ return lhs.container > rhs.container; }
 
 template <class _T, class _Container>
-bool
+inline bool
 operator>=(const ft::stack<_T, _Container>& lhs,
 		   const ft::stack<_T, _Container>& rhs)
-{ return lhs._M_container >= rhs._M_container; }	
+{ return lhs.container >= rhs.container; }	
 
-} // namespace ft
+}	// namespace ft
 
-#endif
+#endif	// STACK_HPP

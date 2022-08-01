@@ -31,6 +31,7 @@ tester() {
 		if [ $memory_mode = 1 ]
 		then
 			valgrind ./${test%.*}ft 2>&1 | grep -A 25 'HEAP SUMMARY'
+  	    	rm ${test%.*}ft ${test%.*}std ft.txt std.txt
 		else
 		    ft_time=`{ time ./${test%.*}ft >/dev/null; } 2>&1 | grep "real" | sed s/[a-z]//g`
 			ft_time_total=`echo "$ft_time_total + $ft_time" | bc`
