@@ -6,7 +6,7 @@
 /*   By: cberganz <cberganz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:35:07 by cberganz          #+#    #+#             */
-/*   Updated: 2022/08/01 00:44:53 by cberganz         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:48:48 by cberganz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ namespace ft
 	void printSet(T &data)
 	{
 		std::cout << "size: " << data.size() << std::endl;
-		//std::cout << "max_size: " << data.max_size() << std::endl;
+		std::cout << "max_size: " << data.max_size() << std::endl;
 		std::cout << "empty: " << data.empty() << std::endl;
 		if (data.size() > 0)
 		{

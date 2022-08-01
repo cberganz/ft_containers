@@ -6,7 +6,7 @@
 /*   By: cberganz <cberganz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:51:19 by cberganz          #+#    #+#             */
-/*   Updated: 2022/08/01 12:56:42 by cberganz         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:40:14 by cberganz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ struct reverse_iterator : public ft::iterator<typename ft::iterator_traits<Itera
 {
 
 protected:
-	Iterator							current;
+	Iterator								current;
 	typedef ft::iterator_traits<Iterator>	traits_type;
 
 public:

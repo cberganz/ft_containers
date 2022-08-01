@@ -6,7 +6,7 @@
 /*   By: cberganz <cberganz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 10:49:32 by cberganz          #+#    #+#             */
-/*   Updated: 2022/08/01 12:02:25 by cberganz         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:49:56 by cberganz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ public:
 	value_compare
 	value_comp()
 	const
-	{ return _RBTree.key_comp(); } // le vrai set renvoi celui de RBT pour les 2
+	{ return _RBTree.key_comp(); }
 
 	/******************************
 				operations

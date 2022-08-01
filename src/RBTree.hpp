@@ -65,7 +65,7 @@ protected:
 		if (y->left != 0)
 			y->left->parent = x;
 		y->parent = x->parent;
-		if (x->parent == 0)
+		if (x->parent == 0 or x->parent == header)
 			header->parent = y;
 		else if (x == x->parent->left)
 			x->parent->left = y;
@@ -83,7 +83,7 @@ protected:
 		if (y->right != 0)
 			y->right->parent = x;
 		y->parent = x->parent;
-		if (x->parent == 0)
+		if (x->parent == 0 or x->parent == header)
 			header->parent = y;
 		else if (x == x->parent->right)
 			x->parent->right = y;
@@ -126,7 +126,7 @@ protected:
 			if (k->parent == k->parent->parent->right)
 			{
 				u = k->parent->parent->left;
-				if (u != 0 and u->color == RED)
+				if (u != 0 and u != header and u->color == RED)
 				{
 					u->color = BLACK;
 					k->parent->color = BLACK;
@@ -148,7 +148,7 @@ protected:
 			else
 			{
 				u = k->parent->parent->right;
-				if (u != 0 and u->color == RED)
+				if (u != 0 and u != header and u->color == RED)
 				{
 					u->color = BLACK;
 					k->parent->color = BLACK;
@@ -429,30 +429,24 @@ public:
 	ft::pair<iterator, bool>
 	insert(const value_type &val)
 	{
-		NodePtr node = find_impl(header->parent, KeyOfValue()(val));
-		if (node != header)
-			return ft::make_pair(iterator(node), false);
-		node = allocator.allocate(1);
-		allocator.construct(node, ft::Node<Val>(val));
-		if (header->parent)
-			header->parent->parent = 0;
 		NodePtr x = header->parent, y = 0;
 		while (x != 0 and x != header)
 		{
+			if (not compare(val, x->data) and not compare(x->data, val))
+				return ft::make_pair(iterator(x), false);
 			y = x;
-			if (compare(node->data, x->data))
-				x = x->left;
-			else
-				x = x->right;
+			x = (compare(val, x->data) ? x->left : x->right);
 		}
+		NodePtr node = allocator.allocate(1);
+		allocator.construct(node, ft::Node<Val>(val));
 		node->parent = y;
 		if (y == 0)
 			header->parent = node;
 		else
 			compare(node->data, y->data) ? y->left = node : y->right = node;
-		if (node->parent == 0)
+		if (node->parent == 0 or node->parent == header)
 			node->color = BLACK;
-		else if (node->parent->parent != 0)
+		else if (node->parent->parent != 0 and node->parent->parent != header)
 			insertFix(node);
 		setHeader();
 		len++;
@@ -467,7 +461,7 @@ public:
 	}
 
 	iterator
-	insert(const_iterator position, const value_type& val)// A LAISSER POUR SET ?
+	insert(const_iterator position, const value_type& val)
 	{
 		static_cast<void>(position);
 		return insert(val).first;
@@ -489,11 +483,10 @@ public:
 	{
 		NodePtr z = find_impl(header->parent, key);
 		if (z == header)
-			return 0; // Key not found
-		NodePtr x, y;
+			return 0;
 		if(header->parent)
 			header->parent->parent = 0;
-		y = z;
+		NodePtr x, y = z;
 		RBTree_colors yColor = y->color;
 		if (z->left == 0)
 		{
@@ -539,7 +532,7 @@ public:
 	{ erase(KeyOfValue()(*position)); }
 
 	void
-	erase(const_iterator position)		// A LAISSER POUR SET ?
+	erase(const_iterator position)
 	{ erase(KeyOfValue()(*position)); }
 
 	void
@@ -550,7 +543,7 @@ public:
 	}
 
 	void
-	erase(const_iterator first, const_iterator last) // A LAISSER POUR SET ?
+	erase(const_iterator first, const_iterator last)
 	{
 		while (first != last)
 			erase(first++);
@@ -712,7 +705,7 @@ template <typename _Key, typename _Val, class _Compare, class _Allocator>
 inline bool
 operator<(const ft::RBTree<_Key, _Val, _Compare, _Allocator> &lhs,
 		  const ft::RBTree<_Key, _Val, _Compare, _Allocator> &rhs)
-{ return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()); } // + comp ?
+{ return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()); }
 
 template <typename _Key, typename _Val, class _Compare, class _Allocator>
 inline bool

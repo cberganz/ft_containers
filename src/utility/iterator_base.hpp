@@ -6,7 +6,7 @@
 /*   By: cberganz <cberganz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:20 by cberganz          #+#    #+#             */
-/*   Updated: 2022/08/01 12:15:00 by cberganz         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:03:02 by cberganz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,9 @@
 namespace ft
 {
 
-template <bool is_valid, typename T>
-struct valid_iterator_tag_res
-{
-	typedef T type;
-	const static bool value = is_valid;
-};
-
-template <typename Category, typename T, typename Difference = std::ptrdiff_t, typename Pointer = T*, typename Reference = T&>
+template <typename Category, typename T,
+		  typename Difference = std::ptrdiff_t,
+		  typename Pointer = T*, typename Reference = T&>
 struct iterator {
 
 	typedef T			value_type;
