@@ -1,22 +1,11 @@
 # ft_containers
-<div class="tg-wrap">
- <table>
- <tbody>
-   <tr>
-     <td>Description</td>
-     <td align="center">Custom version of C++98 compliant containers : Vector, Stack, Map, Set (with RBTree)</td>
-   </tr>
-   <tr>
-     <td>Technologies</td>
-     <td align="center"><a href="#"><img alt="C++" src="https://custom-icon-badges.demolab.com/badge/C++-9C033A.svg?logo=cpp2&logoColor=white&style=for-the-badge"></a></td>
-   </tr>
-   <tr>
-      <td>Allowed libraries</td>
-      <td align="center">STL Only</td>
-   </tr>
- </tbody>
- </table>
-</div>
+
+| Project Name | ft_containers |
+| :-: | :-: |
+| Description | Custom version of C++98 compliant containers : Vector, Stack, Map, Set (with RBTree) |
+| Technologies | <a href="#"><img alt="C++" src="https://custom-icon-badges.demolab.com/badge/C++-9C033A.svg?logo=cpp2&logoColor=white&style=for-the-badge"></a> |
+| External libraries | STL Only |
+| Final grade | 125/125 |
 
 My implementation of the following containers of the C++ standard template library :
 * Vector
